@@ -1,0 +1,16 @@
+{
+  "name": "nginx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docker-build": "docker build -t superview-nginx .",
+    "docker-ecr-login": "$(aws ecr get-login --no-include-email --region us-east-1)",
+    "docker-tag": "docker tag superview-nginx:latest 970556883193.dkr.ecr.us-east-1.amazonaws.com/superview-nginx:latest",
+    "docker-push": "docker push 970556883193.dkr.ecr.us-east-1.amazonaws.com/superview-nginx:latest",
+    "docker-run": "docker run -d -p --name nginx 8080:8080 superview-nginx",
+    "docker-complete": "npm run docker-build && npm run docker-ecr-login && npm run docker-tag && npm run docker-push"
+  },
+  "author": "",
+  "license": "ISC"
+}
